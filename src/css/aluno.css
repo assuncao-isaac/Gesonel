@@ -1,132 +1,602 @@
 
+/* ==========================================
+   PLATAFORMA DE AVALIAÇÕES ACADÊMICAS
+   ÁREA DO ALUNO
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* VARIÁVEIS */
+
+:root {
+    --azul-escuro: #172b4d;
+    --azul-principal: #315b96;
+    --azul-hover: #254879;
+    --azul-claro: #edf3fb;
+
+    --fundo: #f3f6fa;
+    --branco: #ffffff;
+
+    --texto: #263449;
+    --texto-secundario: #718096;
+
+    --borda: #e1e8f0;
+    --sucesso: #25845c;
+
+    --sombra: 0 14px 40px rgba(28, 48, 78, 0.08);
+}
+
+/* RESET */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f1f4f9;
-    color: #333;
     min-height: 100vh;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* CONTEÚDO PRINCIPAL */
+
 .container {
-    width: 90%;
-    max-width: 800px;
-    margin: 60px auto;
+    width: min(92%, 900px);
+    margin: 0 auto;
+    padding: 55px 0;
     text-align: center;
 }
 
+/* TÍTULOS */
+
 h1 {
-    color: #243b64;
+    color: var(--azul-escuro);
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+h2 {
+    color: var(--azul-escuro);
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 15px;
-    font-size: 32px;
+    letter-spacing: -0.3px;
 }
 
 .container > p {
-    color: #666;
+    color: var(--texto-secundario);
     margin-bottom: 35px;
 }
 
-.card {
-    background-color: white;
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
+/* CARTÕES */
 
-.card h2 {
-    color: #243b64;
-    margin-bottom: 15px;
+.card {
+    width: 100%;
+    background: var(--branco);
+    padding: 42px;
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+    text-align: center;
 }
 
 .card p {
+    color: var(--texto-secundario);
     margin-bottom: 20px;
-    color: #666;
 }
 
-input[type="file"] {
-    display: block;
-    margin: 25px auto;
-    max-width: 100%;
-}
+/* BOTÕES */
 
 button {
-    background-color: #243b64;
-    color: white;
-    border: none;
-    padding: 13px 25px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #36558a;
-}
-
-#mensagem {
-    margin-top: 20px;
-}
-
-
-.alternativa {
-    display: block;
-    text-align: left;
-    background-color: #f1f4f9;
-    padding: 15px;
-    margin: 12px 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 24px;
+    border: 1px solid transparent;
     border-radius: 8px;
+    background: var(--azul-principal);
+    color: var(--branco);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.alternativa:hover {
-    background-color: #e1e9f5;
+button:hover:not(:disabled) {
+    background: var(--azul-hover);
+    box-shadow: 0 5px 14px rgba(49, 91, 150, 0.20);
+    transform: translateY(-1px);
 }
 
-.alternativa input {
-    margin-right: 10px;
+button:active:not(:disabled) {
+    transform: translateY(0);
 }
 
-.navegacao {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-top: 30px;
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(49, 91, 150, 0.22);
+    outline-offset: 2px;
 }
 
 button:disabled {
-    background-color: #999;
+    background: #aab4c2;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
+/* IMPORTAÇÃO DO ARQUIVO */
+
+input[type="file"] {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 25px auto;
+    padding: 13px;
+    border: 1px dashed #bdcadd;
+    border-radius: 9px;
+    background: #f8faff;
+    color: var(--texto-secundario);
+    font-family: inherit;
+    font-size: 13px;
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 9px 13px;
+    border: none;
+    border-radius: 6px;
+    background: var(--azul-claro);
+    color: var(--azul-principal);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* MENSAGENS */
+
+#mensagem,
+#mensagemIdentificacao {
+    margin-top: 18px;
+    color: var(--texto-secundario);
+    font-size: 13px;
+}
+
+/* IDENTIFICAÇÃO DO ALUNO */
+
+#areaIdentificacao {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 42px 38px;
+    text-align: center;
+    border-radius: 18px;
+}
+
+#areaIdentificacao::before {
+    content: "ÁREA DO ALUNO";
+    display: block;
+    margin-bottom: 15px;
+    color: var(--azul-principal);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+#areaIdentificacao h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+#areaIdentificacao h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 34px;
+}
 
 #formIdentificacao {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 28px;
     text-align: left;
-    margin-top: 25px;
-}
-
-#formIdentificacao input {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
 }
 
 #formIdentificacao label {
-    font-weight: bold;
-    color: #243b64;
+    margin-top: 8px;
+    color: var(--azul-escuro);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#formIdentificacao input {
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 15px;
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+    background: #fbfcfe;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+#formIdentificacao input:hover {
+    border-color: #b9c8dc;
+}
+
+#formIdentificacao input:focus {
+    border-color: var(--azul-principal);
+    outline: none;
+    background: var(--branco);
+    box-shadow: 0 0 0 3px rgba(49, 91, 150, 0.10);
+}
+
+#formIdentificacao input::placeholder {
+    color: #a0aaba;
 }
 
 #formIdentificacao button {
-    margin-top: 15px;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 16px;
 }
+
+/* ÁREA DA AVALIAÇÃO */
+
+#areaProva {
+    text-align: left;
+}
+
+#tituloProva {
+    margin-bottom: 12px;
+}
+
+/* CONTADOR DE QUESTÕES */
+
+#contadorQuestoes {
+    display: inline-block;
+    margin: 10px 0 22px;
+    padding: 7px 13px;
+    border-radius: 7px;
+    background: var(--azul-claro);
+    color: var(--azul-principal);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* CRONÔMETRO */
+
+#cronometro {
+    color: var(--azul-principal);
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ENUNCIADO */
+
+#enunciadoQuestao {
+    margin: 12px 0 24px;
+    color: var(--azul-escuro);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* ALTERNATIVAS */
+
+.alternativa {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 10px 0;
+    padding: 16px 18px;
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+    background: var(--branco);
+    color: var(--texto);
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.alternativa:hover {
+    border-color: #9eb5d5;
+    background: #f7faff;
+}
+
+.alternativa:has(input:checked) {
+    border-color: var(--azul-principal);
+    background: var(--azul-claro);
+}
+
+.alternativa input {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    accent-color: var(--azul-principal);
+    cursor: pointer;
+}
+
+/* NAVEGAÇÃO */
+
+.navegacao {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--borda);
+}
+
+#btnAnterior {
+    background: var(--branco);
+    color: var(--azul-principal);
+    border-color: var(--borda);
+}
+
+#btnAnterior:hover:not(:disabled) {
+    background: var(--azul-claro);
+}
+
+/* FINALIZAÇÃO */
+
+#btnFinalizar {
+    width: 100%;
+    margin-top: 16px;
+    background: var(--sucesso);
+}
+
+#btnFinalizar:hover:not(:disabled) {
+    background: #1d6e4b;
+}
+
+/* ELEMENTOS OCULTOS */
 
 [hidden] {
     display: none !important;
 }
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+    .container {
+        width: 92%;
+        padding: 30px 0;
+    }
+
+    .card {
+        padding: 28px 20px;
+        border-radius: 13px;
+    }
+
+    #areaIdentificacao {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    #areaIdentificacao h1 {
+        font-size: 23px;
+    }
+
+    #enunciadoQuestao {
+        font-size: 17px;
+    }
+
+    .navegacao {
+        gap: 10px;
+    }
+
+    .navegacao button {
+        flex: 1;
+        padding: 11px 12px;
+    }
+}
+
+
+/* ==========================================
+   REFINAMENTO VISUAL DA TELA DE AVALIAÇÃO
+========================================== */
+
+/* Cartão principal da prova */
+
+#areaProva {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 42px;
+    text-align: left;
+    border-radius: 18px;
+}
+
+/* Título da avaliação */
+
+#tituloProva {
+    color: var(--azul-escuro);
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    margin-bottom: 16px;
+}
+
+/* Área do cronômetro */
+
+#areaProva > p:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--borda);
+    color: var(--texto-secundario);
+    font-size: 14px;
+}
+
+#cronometro {
+    color: var(--azul-principal);
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Indicador de progresso */
+
+#contadorQuestoes {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 0 24px;
+    padding: 8px 14px;
+    border-radius: 7px;
+    background: var(--azul-claro);
+    color: var(--azul-principal);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Enunciado da questão */
+
+#enunciadoQuestao {
+    margin: 0 0 24px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--azul-principal);
+    border-radius: 0 9px 9px 0;
+    background: #f7f9fc;
+    color: var(--azul-escuro);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+/* Alternativas */
+
+#alternativas {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.alternativa {
+    min-height: 58px;
+    margin: 0;
+    padding: 16px 18px;
+    border: 1px solid var(--borda);
+    border-radius: 9px;
+    background: #ffffff;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.alternativa:hover {
+    border-color: #9eb5d5;
+    background: #f7faff;
+}
+
+.alternativa:has(input:checked) {
+    border-color: var(--azul-principal);
+    background: var(--azul-claro);
+    box-shadow: 0 0 0 2px rgba(49, 91, 150, 0.08);
+}
+
+/* Botões de navegação */
+
+.navegacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid var(--borda);
+}
+
+.navegacao button {
+    min-width: 115px;
+    min-height: 48px;
+}
+
+/* Botão anterior */
+
+#btnAnterior {
+    background: #ffffff;
+    color: var(--azul-principal);
+    border: 1px solid var(--borda);
+}
+
+#btnAnterior:hover:not(:disabled) {
+    background: var(--azul-claro);
+    border-color: #b9cbe2;
+}
+
+/* Botão finalizar */
+
+#btnFinalizar {
+    min-height: 48px;
+    border-radius: 8px;
+}
+
+/* Mensagens da avaliação */
+
+#areaProva #mensagem {
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+/* Responsividade */
+
+@media (max-width: 600px) {
+    #areaProva {
+        padding: 26px 20px;
+    }
+
+    #tituloProva {
+        font-size: 23px;
+    }
+
+    #enunciadoQuestao {
+        padding: 15px;
+        font-size: 17px;
+    }
+
+    .alternativa {
+        min-height: 54px;
+        padding: 14px;
+    }
+
+    .navegacao button {
+        min-width: 0;
+    }
+}
+
