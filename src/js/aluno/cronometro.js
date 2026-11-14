@@ -30,3 +30,12 @@ document.addEventListener("alunoIdentificado", () => {
 
     intervalo = setInterval(atualizarCronometro, 1000);
 });
+
+// O cronômetro para quando a avaliação é finalizada
+document.addEventListener("finalizarAvaliacao", () => {
+    if (intervalo !== null) {
+        atualizarCronometro();
+        clearInterval(intervalo);
+        intervalo = null;
+    }
+});

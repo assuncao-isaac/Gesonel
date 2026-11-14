@@ -1,6 +1,11 @@
 const botaoFinalizar = document.getElementById("btnFinalizar");
 
 botaoFinalizar.addEventListener("click", () => {
+    document.dispatchEvent(new Event("finalizarAvaliacao"));
+
+    botaoFinalizar.disabled = true;
+    botaoFinalizar.textContent = "Avaliação finalizada";
+    
     const avaliacao = JSON.parse(
         sessionStorage.getItem("avaliacaoAtual")
     );
