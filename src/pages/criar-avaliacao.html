@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar avaliação</title>
+
+    <link rel="stylesheet" href="../css/professor.css">
+</head>
+
+<body>
+
+    <main class="container-professor">
+
+        <header class="cabecalho-professor">
+            <div>
+                <span class="identificacao">
+                    PLATAFORMA DE AVALIAÇÕES ACADÊMICAS
+                </span>
+
+                <h1>Criar avaliação</h1>
+
+                <p>Preencha as informações iniciais da sua avaliação.</p>
+            </div>
+
+            <a href="professor.html" class="botao-voltar">
+                Voltar
+            </a>
+        </header>
+
+        <section class="painel-professor">
+
+            <div class="cabecalho-painel">
+                <div>
+                    <h2>Informações da avaliação</h2>
+                    <p>Comece definindo os dados principais.</p>
+                </div>
+            </div>
+
+            <form id="formCriarAvaliacao">
+
+                <div class="campo-formulario">
+                    <label for="tituloAvaliacao">
+                        Título da avaliação
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tituloAvaliacao"
+                        placeholder="Ex.: Avaliação de Programação"
+                        required
+                    >
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="quantidadeQuestoes">
+                        Quantidade de questões
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantidadeQuestoes"
+                        min="1"
+                        max="50"
+                        placeholder="Ex.: 10"
+                        required
+                    >
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="tipoQuestao">
+                        Como deseja cadastrar as questões?
+                    </label>
+
+                    <select id="tipoQuestao" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="multipla-escolha">
+                            Múltipla escolha
+                        </option>
+                        <option value="verdadeiro-falso">
+                            Apenas verdadeiro ou falso
+                        </option>
+                    </select>
+                </div>
+
+                <div
+                    class="campo-formulario"
+                    id="campoAlternativas"
+                    style="display: none;"
+                        >
+                    <label for="quantidadeAlternativas">
+                        Quantas alternativas deseja utilizar?
+                    </label>
+
+                    <select id="quantidadeAlternativas">
+                        <option value="">Selecione a quantidade</option>
+                        <option value="2">2 alternativas</option>
+                        <option value="3">3 alternativas</option>
+                        <option value="4">4 alternativas</option>
+                        <option value="5">5 alternativas</option>
+                    </select>
+                </div>
+
+                <div class="acoes-formulario">
+                    <a href="professor.html" class="botao-voltar">
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="botao-criar">
+                        Continuar
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="../js/professor/avaliacao.js"></script>
+
+</body>
+</html>

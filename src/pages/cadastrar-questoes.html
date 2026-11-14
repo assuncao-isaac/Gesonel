@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastrar questões</title>
+
+    <link rel="stylesheet" href="../css/professor.css">
+</head>
+
+<body>
+
+    <main class="container-professor">
+
+        <header class="cabecalho-professor">
+            <div>
+                <span class="identificacao">
+                    PLATAFORMA DE AVALIAÇÕES ACADÊMICAS
+                </span>
+
+                <h1>Cadastrar questões</h1>
+                <p>Adicione os enunciados e as alternativas da avaliação.</p>
+            </div>
+
+            <a href="professor.html" class="botao-voltar">
+                Voltar
+            </a>
+        </header>
+
+        <section class="painel-professor">
+
+            <h2 id="tituloDaAvaliacao">Nova avaliação</h2>
+
+            <p id="progressoQuestoes"></p>
+
+            <form id="formQuestoes">
+
+                <div id="listaQuestoes"></div>
+
+                <div class="acoes-formulario">
+                    <button type="submit" class="botao-criar">
+                        Salvar questões
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="../js/professor/questoes.js"></script>
+
+</body>
+</html>

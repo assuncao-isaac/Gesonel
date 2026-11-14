@@ -1,0 +1,308 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f3f6fb;
+    color: #1e293b;
+    min-height: 100vh;
+}
+
+.container-professor {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 55px 30px;
+}
+
+.cabecalho-professor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.identificacao {
+    color: #3568a8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.cabecalho-professor h1 {
+    color: #172b4d;
+    font-size: 34px;
+    margin: 12px 0;
+}
+
+.cabecalho-professor p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+.botao-voltar {
+    text-decoration: none;
+    color: #315f96;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.botao-voltar:hover {
+    background: #edf3fa;
+}
+
+.painel-professor {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 5px 20px rgba(15, 35, 65, 0.04);
+}
+
+.cabecalho-painel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #e8edf4;
+}
+
+.cabecalho-painel h2 {
+    color: #172b4d;
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.cabecalho-painel p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.botao-criar {
+    display: inline-block;
+    text-decoration: none;
+    background: #315f96;
+    color: #ffffff;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.botao-criar:hover {
+    background: #244b7b;
+}
+
+.estado-vazio {
+    text-align: center;
+    padding: 75px 20px;
+}
+
+.estado-vazio h3 {
+    color: #334155;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.estado-vazio p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+    .container-professor {
+        padding: 30px 18px;
+    }
+
+    .cabecalho-professor,
+    .cabecalho-painel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cabecalho-professor h1 {
+        font-size: 27px;
+    }
+
+    .painel-professor {
+        padding: 22px;
+    }
+}
+
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 28px;
+    max-width: 650px;
+}
+
+.campo-formulario label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.campo-formulario input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.campo-formulario input:focus {
+    border-color: #315f96;
+    box-shadow: 0 0 0 3px rgba(49, 95, 150, 0.10);
+}
+
+.acoes-formulario {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 14px;
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #e8edf4;
+}
+
+.acoes-formulario button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+@media (max-width: 650px) {
+    .acoes-formulario {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .acoes-formulario a,
+    .acoes-formulario button {
+        text-align: center;
+    }
+}
+
+
+.questao-professor {
+    padding: 25px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.questao-professor h3 {
+    color: #315f96;
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.questao-professor textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.alternativa-professor {
+    margin-top: 14px;
+}
+
+.alternativa-professor label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.alternativa-professor input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#progressoQuestoes {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =====================================
+   CAMPOS DE SELEÇÃO - ÁREA DO PROFESSOR
+===================================== */
+
+.campo-formulario select {
+    width: 100%;
+    padding: 15px 45px 15px 16px;
+    border: 1px solid #d5deea;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    color: #334155;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23315f96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 18px;
+
+    transition: all 0.2s ease;
+}
+
+.campo-formulario select:hover {
+    border-color: #8ba9ce;
+    background-color: #ffffff;
+}
+
+.campo-formulario select:focus {
+    outline: none;
+    border-color: #315f96;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(49, 95, 150, 0.10);
+}
+
+.campo-formulario select option {
+    padding: 12px;
+    background-color: #ffffff;
+    color: #334155;
+    font-size: 14px;
+}
+
+/* Espaçamento entre os campos */
+.campo-formulario select {
+    margin-top: 7px;
+}
