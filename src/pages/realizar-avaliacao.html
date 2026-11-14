@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Avaliação</title>
+    <link rel="stylesheet" href="../css/aluno.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <!-- Identificação do aluno -->
+        <section class="card" id="areaIdentificacao">
+            <h1 id="tituloAvaliacao">Avaliação</h1>
+            <h2>Identificação do aluno</h2>
+
+            <form id="formIdentificacao">
+                <label for="nomeAluno">Nome completo:</label>
+                <input type="text" id="nomeAluno" required
+                       placeholder="Digite seu nome">
+
+                <label for="matriculaAluno">Matrícula:</label>
+                <input type="text" id="matriculaAluno" required
+                       placeholder="Digite sua matrícula">
+
+                <button type="submit">Começar avaliação</button>
+            </form>
+
+            <p id="mensagemIdentificacao"></p>
+        </section>
+
+        <!-- Área das questões -->
+        <section class="card" id="areaProva" hidden>
+            <h1 id="tituloProva"></h1>
+
+            <p>Tempo de avaliação: <strong id="cronometro">00:00:00</strong></p>
+
+            <p id="contadorQuestoes"></p>
+
+            <h2 id="enunciadoQuestao"></h2>
+
+            <div id="alternativas"></div>
+
+            <div class="navegacao">
+                <button id="btnAnterior" type="button">Anterior</button>
+                <button id="btnProxima" type="button">Próxima</button>
+            </div>
+
+            <button id="btnFinalizar" type="button">
+            Finalizar avaliação
+            </button>
+
+            <p id="mensagem"></p>
+        </section>
+
+    </main>
+
+    <script type="module" src="../js/aluno/identificacao.js"></script>
+    <script type="module" src="../js/aluno/prova.js"></script>
+    <script type="module" src="../js/aluno/cronometro.js"></script>
+    <script type="module" src="../js/aluno/exportar-respostas.js"></script>
+
+</body>
+</html>

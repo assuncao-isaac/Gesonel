@@ -1,0 +1,27 @@
+
+{
+    "tipo": "avaliacao",
+    "versao": 1,
+    "id": "AV001",
+    "titulo": "Avaliação de Informática",
+    "questoes": [
+        {
+            "id": "Q001",
+            "enunciado": "Qual linguagem é utilizada para estruturar páginas HTML?",
+            "alternativas": [
+                {"id": "A", "texto": "Java"},
+                {"id": "B", "texto": "HTML"},
+                {"id": "C", "texto": "Python"}
+            ]
+        },
+        {
+            "id": "Q002",
+            "enunciado": "Qual linguagem é utilizada para estilizar páginas?",
+            "alternativas": [
+                {"id": "A", "texto": "CSS"},
+                {"id": "B", "texto": "SQL"},
+                {"id": "C", "texto": "Java"}
+            ]
+        }
+    ]
+}

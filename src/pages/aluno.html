@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno</title>
+    <link rel="stylesheet" href="../css/aluno.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Área do Aluno</h1>
+        <p>Bem-vindo à Plataforma de Avaliações Acadêmicas!</p>
+
+        <section class="card">
+            <h2>Realizar avaliação</h2>
+            <p>Importe o arquivo da avaliação fornecido pelo professor.</p>
+
+            <input type="file" id="arquivoAvaliacao" accept=".json">
+
+            <button id="btnImportar">Importar avaliação</button>
+
+            <p id="mensagem"></p>
+        </section>
+    </main>
+
+    <script type="module" src="../js/aluno/importar-avaliacao.js"></script>
+</body>
+</html>
