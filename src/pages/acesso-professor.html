@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acesso do Professor</title>
+
+    <link rel="stylesheet" href="../css/professor.css">
+</head>
+
+<body>
+
+    <main class="container-professor">
+
+        <section class="conteudo-professor">
+
+            <h1>Acesso do Professor</h1>
+
+            <p>
+                Para acessar o ambiente de gerenciamento,
+                informe a senha de acesso.
+            </p>
+
+            <form id="formAcessoProfessor">
+
+                <div class="campo-formulario">
+                    <label for="senhaProfessor">Senha de acesso</label>
+
+                    <input
+                        type="password"
+                        id="senhaProfessor"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+
+                <p id="mensagemErro" style="color: #dc2626;"></p>
+
+                <div class="acoes-formulario">
+
+                    <button type="submit" class="botao-principal">
+                        Entrar
+                    </button>
+
+                    <a href="../../index.html" class="botao-voltar">
+                        Voltar ao início
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="../js/professor/acesso.js"></script>
+
+</body>
+</html>

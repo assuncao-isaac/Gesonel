@@ -1,11 +1,14 @@
+
 const botaoFinalizar = document.getElementById("btnFinalizar");
 
 botaoFinalizar.addEventListener("click", () => {
-    document.dispatchEvent(new Event("finalizarAvaliacao"));
 
     botaoFinalizar.disabled = true;
-    botaoFinalizar.textContent = "Avaliação finalizada";
-    
+    botaoFinalizar.textContent = "Finalizando...";
+
+    // Encerra o cronômetro
+    document.dispatchEvent(new Event("finalizarAvaliacao"));
+
     const avaliacao = JSON.parse(
         sessionStorage.getItem("avaliacaoAtual")
     );
@@ -51,9 +54,16 @@ botaoFinalizar.addEventListener("click", () => {
 
     link.href = endereco;
     link.download = "respostas.json";
+
+    document.body.appendChild(link);
     link.click();
+    link.remove();
 
-    URL.revokeObjectURL(endereco);
+    // Libera o endereço e encaminha para a conclusão
+    setTimeout(() => {
+        URL.revokeObjectURL(endereco);
 
-    alert("Avaliação finalizada! Arquivo respostas.json gerado.");
+        window.location.href = "avaliacao-finalizada.html";
+    }, 500);
+
 });

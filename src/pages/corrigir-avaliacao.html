@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito da Avaliação</title>
+
+    <link rel="stylesheet" href="../css/professor.css">
+</head>
+<body>
+
+    <main class="container-professor">
+
+        <header class="cabecalho-professor">
+            <a href="professor.html" class="botao-voltar">← Voltar</a>
+            <h1>Gabarito da Avaliação</h1>
+            <p>Selecione a alternativa correta de cada questão.</p>
+        </header>
+
+        <section class="conteudo-professor">
+            <h2 id="tituloAvaliacao">Carregando avaliação...</h2>
+
+            <p id="progressoGabarito"></p>
+
+            <form id="formGabarito">
+
+                <div id="listaGabarito"></div>
+
+                <div class="acoes-formulario">
+                    <button type="submit" class="botao-principal">
+                        Salvar gabarito
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+    </main>
+    
+    <script src="../js/professor/proteger-acesso.js"></script>
+    <script src="../js/professor/gabarito.js"></script>
+
+</body>
+</html>

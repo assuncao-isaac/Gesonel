@@ -306,3 +306,393 @@ body {
 .campo-formulario select {
     margin-top: 7px;
 }
+
+
+/* =====================================
+   ALINHAMENTO DAS ALTERNATIVAS DO GABARITO
+===================================== */
+
+.alternativa-professor:has(input[type="radio"]) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 12px 16px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.alternativa-professor:has(input[type="radio"]):hover {
+    background-color: #eff6ff;
+    border-color: #b8cce5;
+}
+
+.alternativa-professor input[type="radio"] {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    accent-color: #315f96;
+    cursor: pointer;
+}
+
+.alternativa-professor:has(input[type="radio"]) label {
+    display: block;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    flex: 1;
+}
+
+
+/* =========================================
+   RESULTADOS DA AVALIAÇÃO
+========================================= */
+
+.secao-resultados {
+    margin-top: 30px;
+    padding: 26px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.secao-resultados h2 {
+    margin: 0 0 12px;
+    color: #1e3a5f;
+    font-size: 21px;
+    font-weight: 650;
+}
+
+.secao-resultados > p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Tabela */
+
+.tabela-resultados {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+}
+
+.tabela-resultados table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.tabela-resultados th {
+    padding: 15px 13px;
+    background-color: #f1f5f9;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 650;
+    text-align: left;
+    border-bottom: 1px solid #dbe3ec;
+    white-space: nowrap;
+}
+
+.tabela-resultados td {
+    padding: 14px 13px;
+    color: #475569;
+    font-size: 14px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.tabela-resultados tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-resultados tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Botão de consulta */
+
+.botao-detalhes {
+    padding: 8px 13px;
+    background-color: #ffffff;
+    color: #315f96;
+    border: 1px solid #315f96;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.botao-detalhes:hover {
+    background-color: #315f96;
+    color: #ffffff;
+}
+
+/* Correção individual */
+
+#detalhesAluno {
+    scroll-margin-top: 20px;
+}
+
+#informacoesResultado {
+    margin: 20px 0;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+#informacoesResultado h3 {
+    margin-bottom: 8px;
+    color: #1e3a5f;
+    font-size: 18px;
+}
+
+#informacoesResultado p {
+    margin: 5px 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+#resumoResultado {
+    margin-bottom: 22px;
+    padding: 15px 18px;
+    background-color: #f8fafc;
+    border-left: 3px solid #315f96;
+    border-radius: 5px;
+}
+
+#resumoResultado p {
+    margin: 0;
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Blocos das questões */
+
+#listaResultadoQuestoes .questao-professor {
+    margin-top: 16px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+#listaResultadoQuestoes .questao-professor h3 {
+    margin-bottom: 12px;
+    color: #1e3a5f;
+    font-size: 16px;
+}
+
+#listaResultadoQuestoes .questao-professor p {
+    margin: 9px 0;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Adaptação para telas menores */
+
+@media (max-width: 768px) {
+    .secao-resultados {
+        padding: 16px;
+    }
+
+    .tabela-resultados table {
+        min-width: 760px;
+    }
+}
+
+
+/* =========================================
+   ORGANIZAÇÃO DA ÁREA DO PROFESSOR
+========================================= */
+
+/* Seções principais */
+
+.secao-acoes-professor,
+.secao-lista-avaliacoes {
+    width: 100%;
+    margin-top: 28px;
+    padding: 28px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+/* Títulos das seções */
+
+.titulo-secao-professor {
+    margin-bottom: 24px;
+}
+
+.titulo-secao-professor h2 {
+    margin: 0 0 8px;
+    color: #1e3a5f;
+    font-size: 21px;
+    font-weight: 650;
+}
+
+.titulo-secao-professor p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Ações do professor */
+
+.grade-acoes-professor {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.acao-professor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+    min-height: 115px;
+    padding: 22px;
+    background-color: #f8fafc;
+    border: 1px solid #dbe3ec;
+    border-left: 4px solid #315f96;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.acao-professor:hover {
+    background-color: #eff6ff;
+    border-color: #b8cce5;
+}
+
+.acao-professor span {
+    color: #1e3a5f;
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.acao-professor small {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Lista de avaliações */
+
+#listaAvaliacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card-avaliacao {
+    width: 100%;
+    padding: 22px 24px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    transition: border-color 0.2s ease;
+}
+
+.card-avaliacao:hover {
+    border-color: #b8cce5;
+}
+
+.cabecalho-avaliacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+
+.cabecalho-avaliacao h3 {
+    margin: 0;
+    color: #1e3a5f;
+    font-size: 17px;
+    font-weight: 650;
+}
+
+.informacoes-avaliacao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+}
+
+.informacoes-avaliacao p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* Botões de cada avaliação */
+
+.acoes-avaliacao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid #edf0f4;
+}
+
+.acoes-avaliacao button {
+    min-height: 36px;
+}
+
+/* Estado vazio */
+
+.estado-vazio {
+    padding: 32px 20px;
+    text-align: center;
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 9px;
+}
+
+.estado-vazio h3 {
+    margin-bottom: 8px;
+    color: #334155;
+}
+
+.estado-vazio p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Responsividade */
+
+@media (max-width: 850px) {
+    .grade-acoes-professor {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho-avaliacao {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .secao-acoes-professor,
+    .secao-lista-avaliacoes {
+        padding: 18px;
+    }
+
+    .acoes-avaliacao {
+        flex-direction: column;
+    }
+
+    .acoes-avaliacao button {
+        width: 100%;
+    }
+}

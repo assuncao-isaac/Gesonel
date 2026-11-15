@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resultados da Avaliação</title>
+
+    <link rel="stylesheet" href="../css/professor.css">
+</head>
+
+<body>
+
+    <main class="container-professor">
+
+        <header class="cabecalho-professor">
+            <div>
+                <span class="identificacao">
+                    PLATAFORMA DE AVALIAÇÕES ACADÊMICAS
+                </span>
+
+                <h1>Resultados da Avaliação</h1>
+
+                <p>Relação de desempenho dos alunos.</p>
+            </div>
+
+            <a href="professor.html" class="botao-voltar">
+                Voltar à área do professor
+            </a>
+        </header>
+
+        <section class="conteudo-professor">
+
+            <div class="secao-resultados">
+                <h2>Histórico de avaliações</h2>
+
+             <p>Selecione uma avaliação para consultar os resultados dos alunos.</p>
+
+            <div class="campo-formulario">
+             <label for="seletorHistorico">Avaliações corrigidas</label>
+
+                 <select id="seletorHistorico">
+                    <option value="">Selecione uma avaliação</option>
+                     </select>
+                    </div>
+                    </div>
+
+            <div class="secao-resultados">
+                <h2 id="tituloAvaliacao">Avaliação</h2>
+
+                <p id="totalAlunos">
+                    Carregando resultados...
+                </p>
+
+                <div class="tabela-resultados">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th>Matrícula</th>
+                                <th>Acertos</th>
+                                <th>Erros</th>
+                                <th>Em branco</th>
+                                <th>Nota</th>
+                                <th>Detalhes</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaResultadosAlunos">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <section id="detalhesAluno" class="secao-resultados"
+                style="display: none;">
+
+                <h2>Correção individual</h2>
+
+                <div id="informacoesResultado"></div>
+
+                <div id="resumoResultado"></div>
+
+                <div id="listaResultadoQuestoes"></div>
+
+            </section>
+
+            <div class="acoes-formulario">
+                <a href="professor.html" class="botao-principal">
+                    Voltar à área do professor
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/professor/proteger-acesso.js"></script>
+    <script src="../js/professor/resultados.js"></script>
+
+</body>
+</html>
+

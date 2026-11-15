@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar Respostas</title>
+
+    <link rel="stylesheet" href="../css/professor.css">
+</head>
+<body>
+
+    <main class="container-professor">
+
+        <header class="cabecalho-professor">
+            <a href="professor.html" class="botao-voltar">← Voltar</a>
+
+            <h1>Importar respostas</h1>
+
+            <p>Selecione a avaliação e importe o arquivo de respostas do aluno.</p>
+        </header>
+
+        <section class="conteudo-professor">
+
+            <form id="formImportarRespostas">
+
+                <div class="campo-formulario">
+                    <label for="avaliacaoSelecionada">
+                        Avaliação
+                    </label>
+
+                    <select id="avaliacaoSelecionada" required>
+                        <option value="">Selecione uma avaliação</option>
+                    </select>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="arquivoRespostas">
+                        Arquivo de respostas do aluno
+                    </label>
+
+                    <input
+                        type="file"
+                        id="arquivoRespostas"
+                        accept=".json,application/json"
+                        required
+                    >
+                </div>
+
+                <div class="acoes-formulario">
+                    <button type="submit" class="botao-principal">
+                        Importar respostas
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="../js/professor/proteger-acesso.js"></script>
+    <script src="../js/services/correcao.js"></script>
+    <script src="../js/professor/importar-respostas.js"></script>
+
+</body>
+</html>
