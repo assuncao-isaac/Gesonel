@@ -82,15 +82,24 @@ function carregarResultados(avaliacaoId) {
 
         const linha = document.createElement("tr");
 
-        const dados = [
-            resultado.aluno.nome,
-            resultado.aluno.matricula,
-            resultado.acertos,
-            resultado.erros,
-            resultado.semResposta ?? 0,
-            Number(resultado.nota).toFixed(2)
-        ];
+       const segundos = Number(resultado.tempoUtilizado) || 0;
+       const minutos = Math.floor(segundos / 60);
+       const segundosRestantes = segundos % 60;
 
+       const tempoFormatado =
+        String(minutos).padStart(2, "0") + ":" +
+        String(segundosRestantes).padStart(2, "0");
+
+       const dados = [
+        resultado.aluno.nome,
+        resultado.aluno.matricula,
+        resultado.acertos,
+        resultado.erros,
+        resultado.semResposta ?? 0,
+        Number(resultado.nota).toFixed(2),
+        tempoFormatado
+    ];
+        
         dados.forEach(valor => {
             const celula = document.createElement("td");
             celula.textContent = valor;
