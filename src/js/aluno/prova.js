@@ -117,7 +117,20 @@
         btnFinalizar.hidden =
             questaoAtual !== avaliacao.questoes.length - 1;
 
+        // Avisa se existem questões sem resposta
+        const questoesEmBranco = avaliacao.questoes.filter(
+        questao => !respostas[questao.id]
+        ).length;
+        
+        if (
+        questaoAtual === avaliacao.questoes.length - 1 &&
+        questoesEmBranco > 0
+        ) {
+        mensagem.textContent =
+        `Atenção! Você ainda tem ${questoesEmBranco} questão(ões) sem resposta.`;
+        } else {
         mensagem.textContent = "";
+    }
     }
 
     btnAnterior.addEventListener("click", () => {
