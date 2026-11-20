@@ -772,3 +772,55 @@ input[type="file"]::file-selector-button {
         border-radius: 13px;
     }
 }
+
+
+/* ==========================================
+   RESUMO DA AVALIAÇÃO IMPORTADA
+========================================== */
+
+.resumo-avaliacao {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 34px;
+    margin: 18px auto 28px;
+    padding: 16px 22px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    background: #f8faff;
+    text-align: left;
+}
+
+.resumo-avaliacao > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 110px;
+}
+
+.resumo-avaliacao span {
+    color: var(--texto-secundario);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.resumo-avaliacao strong {
+    color: var(--azul-escuro);
+    font-size: 14px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+#areaIdentificacao .resumo-avaliacao + h2 {
+    margin-top: 6px;
+}
+
+@media (max-width: 600px) {
+    .resumo-avaliacao {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 18px;
+    }
+}

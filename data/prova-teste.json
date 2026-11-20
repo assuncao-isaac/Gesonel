@@ -1,26 +1,187 @@
-
 {
     "tipo": "avaliacao",
     "versao": 1,
-    "id": "AV001",
-    "titulo": "Avaliação de Informática",
+    "id": "AV002",
+    "titulo": "Avaliação de Informática Básica",
     "questoes": [
         {
-            "id": "Q001",
+            "id": "Q1",
             "enunciado": "Qual linguagem é utilizada para estruturar páginas HTML?",
             "alternativas": [
-                {"id": "A", "texto": "Java"},
-                {"id": "B", "texto": "HTML"},
-                {"id": "C", "texto": "Python"}
+                {
+                    "id": "A",
+                    "texto": "Java"
+                },
+                {
+                    "id": "B",
+                    "texto": "HTML"
+                },
+                {
+                    "id": "C",
+                    "texto": "Python"
+                }
             ]
         },
         {
-            "id": "Q002",
+            "id": "Q2",
             "enunciado": "Qual linguagem é utilizada para estilizar páginas?",
             "alternativas": [
-                {"id": "A", "texto": "CSS"},
-                {"id": "B", "texto": "SQL"},
-                {"id": "C", "texto": "Java"}
+                {
+                    "id": "A",
+                    "texto": "CSS"
+                },
+                {
+                    "id": "B",
+                    "texto": "SQL"
+                },
+                {
+                    "id": "C",
+                    "texto": "Java"
+                }
+            ]
+        },
+        {
+            "id": "Q3",
+            "enunciado": "Qual linguagem é usada para dar interatividade às páginas web, como botões que reagem ao clique?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "SQL"
+                },
+                {
+                    "id": "B",
+                    "texto": "Photoshop"
+                },
+                {
+                    "id": "C",
+                    "texto": "JavaScript"
+                }
+            ]
+        },
+        {
+            "id": "Q4",
+            "enunciado": "Qual programa é usado para acessar sites na internet?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "Navegador (como Chrome ou Edge)"
+                },
+                {
+                    "id": "B",
+                    "texto": "Calculadora"
+                },
+                {
+                    "id": "C",
+                    "texto": "Bloco de notas"
+                }
+            ]
+        },
+        {
+            "id": "Q5",
+            "enunciado": "Qual extensão é usada em arquivos de páginas HTML?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": ".mp3"
+                },
+                {
+                    "id": "B",
+                    "texto": ".exe"
+                },
+                {
+                    "id": "C",
+                    "texto": ".html"
+                }
+            ]
+        },
+        {
+            "id": "Q6",
+            "enunciado": "Qual tag HTML é usada para criar um parágrafo?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "<img>"
+                },
+                {
+                    "id": "B",
+                    "texto": "<p>"
+                },
+                {
+                    "id": "C",
+                    "texto": "<a>"
+                }
+            ]
+        },
+        {
+            "id": "Q7",
+            "enunciado": "Qual tag HTML é usada para inserir uma imagem na página?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "<img>"
+                },
+                {
+                    "id": "B",
+                    "texto": "<br>"
+                },
+                {
+                    "id": "C",
+                    "texto": "<table>"
+                }
+            ]
+        },
+        {
+            "id": "Q8",
+            "enunciado": "Qual linguagem é usada para consultar e guardar dados em um banco de dados?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "CSS"
+                },
+                {
+                    "id": "B",
+                    "texto": "SQL"
+                },
+                {
+                    "id": "C",
+                    "texto": "HTML"
+                }
+            ]
+        },
+        {
+            "id": "Q9",
+            "enunciado": "Qual propriedade do CSS altera a cor do texto?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "margin"
+                },
+                {
+                    "id": "B",
+                    "texto": "font-size"
+                },
+                {
+                    "id": "C",
+                    "texto": "color"
+                }
+            ]
+        },
+        {
+            "id": "Q10",
+            "enunciado": "Qual formato de arquivo esta plataforma usa para trocar provas e respostas?",
+            "alternativas": [
+                {
+                    "id": "A",
+                    "texto": "JSON"
+                },
+                {
+                    "id": "B",
+                    "texto": "MP3"
+                },
+                {
+                    "id": "C",
+                    "texto": "JPG"
+                }
             ]
         }
     ]

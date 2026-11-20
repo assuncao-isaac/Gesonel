@@ -1,26 +1,23 @@
+(function () {
+    "use strict";
 
-const arquivoInput = document.getElementById("arquivoAvaliacao");
-const botaoImportar = document.getElementById("btnImportar");
-const mensagem = document.getElementById("mensagem");
+    const arquivoInput = document.getElementById("arquivoAvaliacao");
+    const botaoImportar = document.getElementById("btnImportar");
+    const mensagem = document.getElementById("mensagem");
 
-botaoImportar.addEventListener("click", async () => {
-    const arquivo = arquivoInput.files[0];
-
-    // Verifica se o aluno selecionou um arquivo
-    if (!arquivo) {
-        mensagem.textContent = "Selecione um arquivo JSON primeiro.";
-        return;
+    function mostrarMensagem(texto, tipo) {
+        mensagem.textContent = texto;
+        mensagem.className = tipo ? "mensagem-" + tipo : "";
     }
 
-    try {
-        // Lê o conteúdo do arquivo
-        const conteudo = await arquivo.text();
+    function textoQuestoes(quantidade) {
+        return quantidade + (quantidade === 1 ? " questão" : " questões");
+    }
 
-        // Converte o texto para objeto JavaScript
-        const avaliacao = JSON.parse(conteudo);
-
-        // Verifica se o arquivo possui os dados básicos de uma avaliação
+    // Valida a estrutura básica de uma avaliação
+    function validarAvaliacao(avaliacao) {
         if (
+            !avaliacao ||
             avaliacao.tipo !== "avaliacao" ||
             !avaliacao.id ||
             !avaliacao.titulo ||
@@ -30,7 +27,6 @@ botaoImportar.addEventListener("click", async () => {
             throw new Error("O arquivo não possui uma avaliação válida.");
         }
 
-        // Verifica se as questões estão preenchidas corretamente
         const questoesValidas = avaliacao.questoes.every(questao =>
             questao.id &&
             questao.enunciado &&
@@ -44,21 +40,104 @@ botaoImportar.addEventListener("click", async () => {
         if (!questoesValidas) {
             throw new Error("Existem questões ou alternativas inválidas.");
         }
-
-        // Guarda a avaliação para as próximas etapas
-        sessionStorage.setItem(
-            "avaliacaoAtual",
-            JSON.stringify(avaliacao)
-        );
-        window.location.href = "realizar-avaliacao.html";
-
-        // Mostra as informações da avaliação
-        mensagem.textContent =
-            "Avaliação importada com sucesso! " +
-            "Título: " + avaliacao.titulo +
-            " | Quantidade de questões: " + avaliacao.questoes.length;
-
-    } catch (erro) {
-        mensagem.textContent = "Erro ao importar: " + erro.message;
     }
-});
+
+    // Lê o arquivo e devolve a avaliação já validada
+    async function lerAvaliacao(arquivo) {
+        // Remove o BOM, se o editor tiver gravado um
+        const conteudo = (await arquivo.text()).replace(/^\uFEFF/, "");
+
+        let avaliacao;
+
+        try {
+            avaliacao = JSON.parse(conteudo);
+        } catch (erroJson) {
+            throw new Error("o arquivo selecionado não é um JSON válido.");
+        }
+
+        validarAvaliacao(avaliacao);
+
+        return avaliacao;
+    }
+
+    // Ao escolher um arquivo, já mostra uma prévia da avaliação
+    arquivoInput.addEventListener("change", async () => {
+        const arquivo = arquivoInput.files[0];
+
+        if (!arquivo) {
+            mostrarMensagem("", "");
+            return;
+        }
+
+        mostrarMensagem("Lendo o arquivo...", "");
+
+        try {
+            const avaliacao = await lerAvaliacao(arquivo);
+
+            // Ignora a resposta se o aluno já escolheu outro arquivo
+            if (arquivoInput.files[0] !== arquivo) return;
+
+            mostrarMensagem(
+                "Arquivo: " + arquivo.name +
+                " | Avaliação: " + avaliacao.titulo +
+                " | " + textoQuestoes(avaliacao.questoes.length),
+                "sucesso"
+            );
+        } catch (erro) {
+            if (arquivoInput.files[0] !== arquivo) return;
+
+            mostrarMensagem("Erro ao importar: " + erro.message, "erro");
+        }
+    });
+
+    botaoImportar.addEventListener("click", async () => {
+        const arquivo = arquivoInput.files[0];
+
+        if (!arquivo) {
+            mostrarMensagem("Selecione um arquivo JSON primeiro.", "erro");
+            return;
+        }
+
+        // Evita cliques repetidos durante o processamento
+        botaoImportar.disabled = true;
+
+        try {
+            const avaliacao = await lerAvaliacao(arquivo);
+
+            // Nova avaliação: descarta dados de tentativas anteriores
+            // para que respostas antigas não sejam misturadas com a nova prova
+            [
+                "alunoAtual",
+                "respostasAluno",
+                "tempoUtilizado",
+                "inicioAvaliacao",
+                "questaoAtual",
+                "respostasExportadas"
+            ].forEach(chave => sessionStorage.removeItem(chave));
+
+            sessionStorage.setItem(
+                "avaliacaoAtual",
+                JSON.stringify(avaliacao)
+            );
+
+            // Nome do arquivo, exibido na tela de identificação
+            sessionStorage.setItem("nomeArquivoAvaliacao", arquivo.name);
+
+            mostrarMensagem(
+                "Avaliação importada com sucesso! " +
+                "Título: " + avaliacao.titulo +
+                " | Quantidade de questões: " + avaliacao.questoes.length,
+                "sucesso"
+            );
+
+            // Pequena pausa para o aluno ler a confirmação
+            setTimeout(() => {
+                window.location.href = "realizar-avaliacao.html";
+            }, 800);
+
+        } catch (erro) {
+            botaoImportar.disabled = false;
+            mostrarMensagem("Erro ao importar: " + erro.message, "erro");
+        }
+    });
+})();

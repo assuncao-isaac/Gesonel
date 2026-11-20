@@ -1,41 +1,55 @@
+(function () {
+    "use strict";
 
-let inicio = null;
-let intervalo = null;
-let tempoUtilizado = 0;
+    let inicio = null;
+    let intervalo = null;
+    let tempoUtilizado = 0;
 
-const cronometro = document.getElementById("cronometro");
+    const cronometro = document.getElementById("cronometro");
 
-function atualizarCronometro() {
-    tempoUtilizado = Math.floor((Date.now() - inicio) / 1000);
+    function atualizarCronometro() {
+        tempoUtilizado = Math.max(0, Math.floor((Date.now() - inicio) / 1000));
 
-    const horas = Math.floor(tempoUtilizado / 3600);
-    const minutos = Math.floor((tempoUtilizado % 3600) / 60);
-    const segundos = tempoUtilizado % 60;
+        const horas = Math.floor(tempoUtilizado / 3600);
+        const minutos = Math.floor((tempoUtilizado % 3600) / 60);
+        const segundos = tempoUtilizado % 60;
 
-    cronometro.textContent =
-        `${String(horas).padStart(2, "0")}:` +
-        `${String(minutos).padStart(2, "0")}:` +
-        `${String(segundos).padStart(2, "0")}`;
+        cronometro.textContent =
+            `${String(horas).padStart(2, "0")}:` +
+            `${String(minutos).padStart(2, "0")}:` +
+            `${String(segundos).padStart(2, "0")}`;
 
-    sessionStorage.setItem("tempoUtilizado", tempoUtilizado);
-}
-
-// O cronômetro começa quando o aluno inicia a avaliação
-document.addEventListener("alunoIdentificado", () => {
-    if (intervalo !== null) return;
-
-    inicio = Date.now();
-
-    atualizarCronometro();
-
-    intervalo = setInterval(atualizarCronometro, 1000);
-});
-
-// O cronômetro para quando a avaliação é finalizada
-document.addEventListener("finalizarAvaliacao", () => {
-    if (intervalo !== null) {
-        atualizarCronometro();
-        clearInterval(intervalo);
-        intervalo = null;
+        sessionStorage.setItem("tempoUtilizado", tempoUtilizado);
     }
-});
+
+    // O cronômetro começa quando o aluno inicia a avaliação.
+    // Se a página for recarregada, ele continua a partir do início original.
+    document.addEventListener("alunoIdentificado", () => {
+        if (intervalo !== null) return;
+
+        const inicioSalvo = Number(sessionStorage.getItem("inicioAvaliacao"));
+
+        inicio = (
+            Number.isFinite(inicioSalvo) &&
+            inicioSalvo > 0 &&
+            inicioSalvo <= Date.now()
+        )
+            ? inicioSalvo
+            : Date.now();
+
+        sessionStorage.setItem("inicioAvaliacao", String(inicio));
+
+        atualizarCronometro();
+
+        intervalo = setInterval(atualizarCronometro, 1000);
+    });
+
+    // O cronômetro para quando a avaliação é finalizada
+    document.addEventListener("finalizarAvaliacao", () => {
+        if (intervalo !== null) {
+            atualizarCronometro();
+            clearInterval(intervalo);
+            intervalo = null;
+        }
+    });
+})();

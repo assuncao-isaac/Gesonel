@@ -1,10 +1,13 @@
+(function () {
+    "use strict";
 
-const avaliacaoSalva = sessionStorage.getItem("avaliacaoAtual");
+    const avaliacaoSalva = sessionStorage.getItem("avaliacaoAtual");
 
-if (!avaliacaoSalva) {
-    alert("Nenhuma avaliação foi importada.");
-    window.location.href = "aluno.html";
-} else {
+    // Sem avaliação importada, quem avisa e redireciona é o identificacao.js
+    if (!avaliacaoSalva) {
+        return;
+    }
+
     const avaliacao = JSON.parse(avaliacaoSalva);
 
     const titulo = document.getElementById("tituloProva");
@@ -13,15 +16,60 @@ if (!avaliacaoSalva) {
     const alternativasDiv = document.getElementById("alternativas");
     const btnAnterior = document.getElementById("btnAnterior");
     const btnProxima = document.getElementById("btnProxima");
+    const btnFinalizar = document.getElementById("btnFinalizar");
     const mensagem = document.getElementById("mensagem");
 
-    let questaoAtual = 0;
-    const respostas = {};
+    // Recupera as respostas salvas, mantendo apenas as que ainda são válidas
+    function lerRespostasSalvas() {
+        const recuperadas = {};
+
+        try {
+            const salvas = JSON.parse(
+                sessionStorage.getItem("respostasAluno") || "{}"
+            );
+
+            avaliacao.questoes.forEach(questao => {
+                const alternativaSalva = salvas[questao.id];
+
+                const valida = questao.alternativas.some(
+                    alternativa => alternativa.id === alternativaSalva
+                );
+
+                if (valida) {
+                    recuperadas[questao.id] = alternativaSalva;
+                }
+            });
+        } catch (erro) {
+            // dado corrompido: começa sem respostas
+        }
+
+        return recuperadas;
+    }
+
+    // Recupera a última questão aberta, respeitando os limites da prova
+    function lerQuestaoSalva() {
+        const indice = Number(sessionStorage.getItem("questaoAtual"));
+
+        if (
+            Number.isInteger(indice) &&
+            indice >= 0 &&
+            indice < avaliacao.questoes.length
+        ) {
+            return indice;
+        }
+
+        return 0;
+    }
+
+    let questaoAtual = lerQuestaoSalva();
+    const respostas = lerRespostasSalvas();
 
     titulo.textContent = avaliacao.titulo;
 
     function mostrarQuestao() {
         const questao = avaliacao.questoes[questaoAtual];
+
+        sessionStorage.setItem("questaoAtual", String(questaoAtual));
 
         contador.textContent =
             `Questão ${questaoAtual + 1} de ${avaliacao.questoes.length}`;
@@ -42,13 +90,13 @@ if (!avaliacaoSalva) {
                 radio.checked = true;
             }
 
-           radio.addEventListener("change", () => {
-    respostas[questao.id] = alternativa.id;
+            radio.addEventListener("change", () => {
+                respostas[questao.id] = alternativa.id;
 
-    sessionStorage.setItem(
-        "respostasAluno",
-        JSON.stringify(respostas)
-            );
+                sessionStorage.setItem(
+                    "respostasAluno",
+                    JSON.stringify(respostas)
+                );
             });
 
             label.appendChild(radio);
@@ -66,8 +114,7 @@ if (!avaliacaoSalva) {
                 ? "Última questão"
                 : "Próxima";
 
-                
-        document.getElementById("btnFinalizar").hidden =
+        btnFinalizar.hidden =
             questaoAtual !== avaliacao.questoes.length - 1;
 
         mensagem.textContent = "";
@@ -91,7 +138,8 @@ if (!avaliacaoSalva) {
     });
 
     // Só mostra as questões depois da identificação
+    // (ou da retomada de uma prova em andamento)
     document.addEventListener("alunoIdentificado", () => {
         mostrarQuestao();
     });
-}
+})();

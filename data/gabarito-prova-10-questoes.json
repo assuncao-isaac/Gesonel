@@ -1,0 +1,47 @@
+{
+    "tipo": "gabarito",
+    "versao": 1,
+    "avaliacaoId": "AV002",
+    "respostas": [
+        {
+            "questaoId": "Q1",
+            "alternativaCorreta": "B"
+        },
+        {
+            "questaoId": "Q2",
+            "alternativaCorreta": "A"
+        },
+        {
+            "questaoId": "Q3",
+            "alternativaCorreta": "C"
+        },
+        {
+            "questaoId": "Q4",
+            "alternativaCorreta": "A"
+        },
+        {
+            "questaoId": "Q5",
+            "alternativaCorreta": "C"
+        },
+        {
+            "questaoId": "Q6",
+            "alternativaCorreta": "B"
+        },
+        {
+            "questaoId": "Q7",
+            "alternativaCorreta": "A"
+        },
+        {
+            "questaoId": "Q8",
+            "alternativaCorreta": "B"
+        },
+        {
+            "questaoId": "Q9",
+            "alternativaCorreta": "C"
+        },
+        {
+            "questaoId": "Q10",
+            "alternativaCorreta": "A"
+        }
+    ]
+}
