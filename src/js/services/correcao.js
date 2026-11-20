@@ -58,7 +58,7 @@ function corrigirAvaliacao(avaliacao, gabarito, respostasAluno) {
     const totalRespondidas = acertos + erros;
 
     const nota = totalRespondidas > 0
-        ? Number(((acertos / totalRespondidas) * 10).toFixed(2))
+        ? Number(((acertos / totalQuestoes) * 10).toFixed(2))
         : 0;
 
     return {
