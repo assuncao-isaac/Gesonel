@@ -1,3 +1,4 @@
+
 (function () {
     "use strict";
 
@@ -23,6 +24,28 @@
         }
     }
 
+    // Função responsável pelo download do JSON
+    function baixarArquivo(conteudo, nomeArquivo) {
+        const arquivo = new Blob(
+            [conteudo],
+            { type: "application/json" }
+        );
+
+        const endereco = URL.createObjectURL(arquivo);
+        const link = document.createElement("a");
+
+        link.href = endereco;
+        link.download = nomeArquivo;
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => {
+            URL.revokeObjectURL(endereco);
+        }, 1000);
+    }
+
     botaoFinalizar.addEventListener("click", () => {
 
         const avaliacao = lerJson("avaliacaoAtual", null);
@@ -37,7 +60,7 @@
         botaoFinalizar.disabled = true;
         botaoFinalizar.textContent = "Finalizando...";
 
-        // Encerra o cronômetro (grava o tempo final)
+        // Encerra o cronômetro
         document.dispatchEvent(new Event("finalizarAvaliacao"));
 
         const respostasSalvas = lerJson("respostasAluno", {});
@@ -67,28 +90,29 @@
 
         const conteudo = JSON.stringify(arquivoRespostas, null, 4);
 
-        const arquivo = new Blob([conteudo], { type: "application/json" });
+        const nomeArquivo =
+            "respostas-" +
+            aluno.nome + "-" +
+            aluno.matricula + "-" +
+            Date.now() +
+            ".json";
 
-        const endereco = URL.createObjectURL(arquivo);
-        const link = document.createElement("a");
-
-        link.href = endereco;
-        link.download = "respostas.json";
-
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        // Guarda uma cópia para a página de conclusão oferecer novo download
-        // e encerra a prova, para que ela não seja retomada depois de enviada
+        // Armazena uma cópia para novo download
         sessionStorage.setItem("respostasExportadas", conteudo);
-        CHAVES_DA_PROVA.forEach(chave => sessionStorage.removeItem(chave));
 
-        // Libera o endereço e encaminha para a conclusão
+        // Realiza o download
+        baixarArquivo(conteudo, nomeArquivo);
+
+        // Encerra a prova
+        CHAVES_DA_PROVA.forEach(chave => {
+            sessionStorage.removeItem(chave);
+        });
+
+        // Encaminha para a página de conclusão
         setTimeout(() => {
-            URL.revokeObjectURL(endereco);
-
             window.location.href = "avaliacao-finalizada.html";
-        }, 500);
+        }, 1000);
+
     });
+
 })();

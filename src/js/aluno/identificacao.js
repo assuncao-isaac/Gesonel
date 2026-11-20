@@ -8,6 +8,10 @@ const nomeInput = document.getElementById("nomeAluno");
 const matriculaInput = document.getElementById("matriculaAluno");
 const mensagem = document.getElementById("mensagemIdentificacao");
 
+// Elementos do resumo da avaliação
+const resumoArquivo = document.getElementById("resumoArquivo");
+const resumoQuestoes = document.getElementById("resumoQuestoes");
+
 if (!avaliacaoSalva) {
     alert("Nenhuma avaliação foi importada.");
     window.location.href = "aluno.html";
@@ -15,6 +19,12 @@ if (!avaliacaoSalva) {
     const avaliacao = JSON.parse(avaliacaoSalva);
 
     tituloAvaliacao.textContent = avaliacao.titulo;
+
+    // Preenche o resumo da avaliação
+    const nomeArquivo = sessionStorage.getItem("nomeArquivoAvaliacao");
+
+    resumoArquivo.textContent = nomeArquivo || "Não informado";
+    resumoQuestoes.textContent = avaliacao.questoes.length;
 
     formulario.addEventListener("submit", (evento) => {
         evento.preventDefault();
