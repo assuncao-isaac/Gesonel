@@ -42,9 +42,11 @@ function carregarAvaliacoes() {
         quantidade.textContent =
             avaliacao.questoes.length + " questão(ões) cadastrada(s)";
 
-        const gabaritoSalvo = gabaritos.some(
+        const gabaritoExistente = gabaritos.find(
             item => item.avaliacaoId === avaliacao.id
         );
+
+        const gabaritoSalvo = Boolean(gabaritoExistente);
 
         const statusGabarito = document.createElement("p");
         statusGabarito.textContent = gabaritoSalvo
@@ -138,6 +140,139 @@ function carregarAvaliacoes() {
             window.location.href = "corrigir-avaliacao.html";
         });
 
+        // Exportar gabarito
+        const botaoExportarGabarito = document.createElement("button");
+        botaoExportarGabarito.type = "button";
+        botaoExportarGabarito.className = "botao-criar";
+        botaoExportarGabarito.textContent = "Exportar gabarito";
+        botaoExportarGabarito.disabled = !gabaritoSalvo;
+
+        botaoExportarGabarito.addEventListener("click", function() {
+
+            if (!gabaritoExistente) {
+                alert("Esta avaliação ainda não possui gabarito.");
+                return;
+            }
+
+            const blob = new Blob(
+                [JSON.stringify(gabaritoExistente, null, 4)],
+                { type: "application/json" }
+            );
+
+            const endereco = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = endereco;
+            link.download = "gabarito.json";
+
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            setTimeout(() => {
+                URL.revokeObjectURL(endereco);
+            }, 1000);
+        });
+
+        // Importar gabarito
+        const botaoImportarGabarito = document.createElement("button");
+        botaoImportarGabarito.type = "button";
+        botaoImportarGabarito.className = "botao-criar";
+        botaoImportarGabarito.textContent = "Importar gabarito";
+
+        botaoImportarGabarito.addEventListener("click", function() {
+
+            const seletorArquivo = document.createElement("input");
+            seletorArquivo.type = "file";
+            seletorArquivo.accept = ".json,application/json";
+
+            seletorArquivo.addEventListener("change", async function() {
+
+                const arquivo = seletorArquivo.files[0];
+
+                if (!arquivo) return;
+
+                try {
+                    const conteudo = await arquivo.text();
+                    const dados = JSON.parse(conteudo);
+
+                    // Validar estrutura do arquivo
+                    if (
+                        dados.tipo !== "gabarito" ||
+                        dados.versao !== 1 ||
+                        dados.avaliacaoId !== avaliacao.id ||
+                        !Array.isArray(dados.respostas)
+                    ) {
+                        throw new Error("Arquivo incompatível com esta avaliação.");
+                    }
+
+                    // Validar quantidade de respostas
+                    if (
+                        dados.respostas.length !== avaliacao.questoes.length
+                    ) {
+                        throw new Error("O gabarito não possui todas as respostas.");
+                    }
+
+                    // Validar cada resposta
+                    const questoesRespondidas = new Set();
+
+                    for (const resposta of dados.respostas) {
+
+                        const questao = avaliacao.questoes.find(
+                            item => item.id === resposta.questaoId
+                        );
+
+                        if (
+                            !questao ||
+                            questoesRespondidas.has(resposta.questaoId)
+                        ) {
+                            throw new Error("Existem questões inválidas ou duplicadas.");
+                        }
+
+                        const alternativaValida = questao.alternativas.some(
+                            alternativa =>
+                                alternativa.id === resposta.alternativaCorreta
+                        );
+
+                        if (!alternativaValida) {
+                            throw new Error("Existe uma alternativa inválida no gabarito.");
+                        }
+
+                        questoesRespondidas.add(resposta.questaoId);
+                    }
+
+                    // Atualizar ou cadastrar gabarito
+                    const gabaritosAtualizados = JSON.parse(
+                        localStorage.getItem("gabaritosProfessor") || "[]"
+                    );
+
+                    const indiceExistente = gabaritosAtualizados.findIndex(
+                        item => item.avaliacaoId === avaliacao.id
+                    );
+
+                    if (indiceExistente !== -1) {
+                        gabaritosAtualizados[indiceExistente] = dados;
+                    } else {
+                        gabaritosAtualizados.push(dados);
+                    }
+
+                    localStorage.setItem(
+                        "gabaritosProfessor",
+                        JSON.stringify(gabaritosAtualizados)
+                    );
+
+                    alert("Gabarito importado com sucesso!");
+
+                    carregarAvaliacoes();
+
+                } catch (erro) {
+                    alert("Erro ao importar gabarito: " + erro.message);
+                }
+            });
+
+            seletorArquivo.click();
+        });
+
         // Excluir avaliação
         const botaoExcluir = document.createElement("button");
         botaoExcluir.type = "button";
@@ -178,6 +313,8 @@ function carregarAvaliacoes() {
         acoes.appendChild(botaoExportar);
         acoes.appendChild(botaoEditar);
         acoes.appendChild(botaoGabarito);
+        acoes.appendChild(botaoExportarGabarito);
+        acoes.appendChild(botaoImportarGabarito);
         acoes.appendChild(botaoExcluir);
 
         // Monta o cartão
