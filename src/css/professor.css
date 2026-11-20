@@ -696,3 +696,195 @@ body {
         width: 100%;
     }
 }
+
+
+/* =========================================
+   AÇÕES DO CABEÇALHO (VOLTAR / SAIR)
+========================================= */
+
+.acoes-cabecalho {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.cabecalho-professor button.botao-voltar {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .acoes-cabecalho {
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================
+   BOTÕES: PRINCIPAL, CRIAR E VOLTAR
+   (funcionam em <a> e em <button>)
+========================================= */
+
+.botao-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #315f96;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.botao-principal:hover {
+    background: #244b7b;
+    box-shadow: 0 5px 14px rgba(49, 95, 150, 0.22);
+    transform: translateY(-1px);
+}
+
+.botao-principal:active {
+    transform: translateY(0);
+}
+
+.botao-principal:disabled {
+    background: #aab4c2;
+    box-shadow: none;
+    transform: none;
+    cursor: not-allowed;
+}
+
+/* Botões <button> que usam as classes de link precisam
+   do mesmo acabamento dos links */
+button.botao-criar {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button.botao-voltar {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.botao-principal:focus-visible,
+.botao-criar:focus-visible,
+.botao-voltar:focus-visible,
+.botao-detalhes:focus-visible {
+    outline: 3px solid rgba(49, 95, 150, 0.30);
+    outline-offset: 2px;
+}
+
+
+/* =========================================
+   CONTEÚDO DAS PÁGINAS DO PROFESSOR
+   (acesso, gabarito, importar respostas, resultados)
+========================================= */
+
+.conteudo-professor {
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(15, 35, 65, 0.04);
+}
+
+/* Na tela de resultados o conteúdo já é composto por cartões:
+   o contêiner fica transparente para não duplicar a moldura */
+.conteudo-professor:has(> .secao-resultados) {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.conteudo-professor > h2 {
+    margin-bottom: 8px;
+    color: #172b4d;
+    font-size: 21px;
+}
+
+#progressoGabarito {
+    margin-bottom: 8px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Campo de arquivo no mesmo padrão visual do sistema */
+.campo-formulario input[type="file"] {
+    background: #f8fafc;
+    border-style: dashed;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.campo-formulario input[type="file"]::file-selector-button {
+    margin-right: 12px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #edf3fa;
+    color: #315f96;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .conteudo-professor {
+        padding: 22px;
+    }
+}
+
+
+/* =========================================
+   TELA DE ACESSO DO PROFESSOR
+========================================= */
+
+.container-acesso {
+    max-width: 540px;
+    padding-top: 80px;
+}
+
+.container-acesso .identificacao {
+    display: block;
+}
+
+.container-acesso h1 {
+    margin: 12px 0 10px;
+    color: #172b4d;
+    font-size: 28px;
+}
+
+.container-acesso .texto-acesso {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#mensagemErro {
+    min-height: 20px;
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media (max-width: 650px) {
+    .container-acesso {
+        padding-top: 40px;
+    }
+}
+
+
+/* Primeiro campo do cartão encosta no topo (a tela de acesso mantém o respiro) */
+.container-professor:not(.container-acesso) .conteudo-professor > form > .campo-formulario:first-child {
+    margin-top: 0;
+}

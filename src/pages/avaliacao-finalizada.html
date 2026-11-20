@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,29 +12,37 @@
     <main class="container-aluno">
         <section class="conteudo-avaliacao">
 
-            <div style="text-align: center; padding: 40px 20px;">
+            <div class="icone-sucesso" aria-hidden="true">✓</div>
 
-                <h1>✓</h1>
+            <h1>Avaliação finalizada!</h1>
 
-                <h2>Avaliação finalizada!</h2>
+            <p>
+                Suas respostas foram registradas com sucesso.
+            </p>
 
-                <p>
-                    Suas respostas foram registradas com sucesso.
-                </p>
+            <p>
+                O arquivo <strong>respostas.json</strong> foi gerado.
+                Guarde-o para enviar ao professor.
+            </p>
 
-                <p>
-                    O arquivo <strong>respostas.json</strong> foi gerado.
-                    Guarde-o para enviar ao professor.
-                </p>
+            <!-- Aparece somente se as respostas desta sessão ainda estiverem disponíveis -->
+            <div id="areaBaixarNovamente" class="aviso-download" hidden>
+                <p>Não encontrou o arquivo? Você pode baixá-lo novamente.</p>
 
-                <a href="../../index.html" class="botao-principal">
-                Voltar ao início
-                </a>
-
+                <button type="button" id="btnBaixarNovamente"
+                        class="botao-principal botao-secundario">
+                    Baixar respostas.json novamente
+                </button>
             </div>
+
+            <a href="../../index.html" class="botao-principal">
+                Voltar ao início
+            </a>
 
         </section>
     </main>
+
+    <script src="../js/aluno/finalizada.js"></script>
 
 </body>
 </html>

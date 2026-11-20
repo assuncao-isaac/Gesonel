@@ -600,3 +600,175 @@ input[type="file"]::file-selector-button {
     }
 }
 
+
+
+/* ==========================================
+   BOTÃO VOLTAR E MENSAGENS DE STATUS
+========================================== */
+
+.barra-voltar {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 18px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: var(--branco);
+    color: var(--azul-principal);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.botao-voltar:hover {
+    background: var(--azul-claro);
+    border-color: #b9cbe2;
+}
+
+.botao-voltar:focus-visible {
+    outline: 3px solid rgba(49, 91, 150, 0.22);
+    outline-offset: 2px;
+}
+
+/* Botão voltar dentro de um cartão (tela de identificação) */
+.card .botao-voltar {
+    margin-top: 20px;
+}
+
+.mensagem-erro {
+    color: #b91c1c !important;
+    font-weight: 600;
+}
+
+.mensagem-sucesso {
+    color: var(--sucesso) !important;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   PÁGINA DE CONCLUSÃO E BOTÕES PRINCIPAIS
+========================================== */
+
+/* Contêiner da página de conclusão (mesmo padrão de .container) */
+.container-aluno {
+    width: min(92%, 900px);
+    margin: 0 auto;
+    padding: 55px 0;
+    text-align: center;
+}
+
+/* Cartão da página de conclusão (mesmo padrão de .card) */
+.conteudo-avaliacao {
+    width: 100%;
+    padding: 48px 42px;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+.conteudo-avaliacao p {
+    max-width: 520px;
+    margin: 0 auto 16px;
+    color: var(--texto-secundario);
+}
+
+.conteudo-avaliacao p strong {
+    color: var(--azul-escuro);
+}
+
+.icone-sucesso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: #e6f4ee;
+    color: var(--sucesso);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.aviso-download {
+    max-width: 520px;
+    margin: 26px auto;
+    padding: 18px;
+    border: 1px dashed #bdcadd;
+    border-radius: 10px;
+    background: #f8faff;
+}
+
+.aviso-download p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* Botão principal (funciona em <a> e em <button>) */
+.botao-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 10px;
+    padding: 12px 26px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: var(--azul-principal);
+    color: var(--branco);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.botao-principal:hover:not(:disabled) {
+    background: var(--azul-hover);
+    box-shadow: 0 5px 14px rgba(49, 91, 150, 0.20);
+    transform: translateY(-1px);
+}
+
+.botao-principal:focus-visible {
+    outline: 3px solid rgba(49, 91, 150, 0.22);
+    outline-offset: 2px;
+}
+
+/* Botão secundário (contorno) */
+.botao-secundario {
+    background: var(--branco);
+    color: var(--azul-principal);
+    border-color: var(--borda);
+}
+
+.botao-secundario:hover:not(:disabled) {
+    background: var(--azul-claro);
+    border-color: #b9cbe2;
+    box-shadow: none;
+}
+
+@media (max-width: 600px) {
+    .container-aluno {
+        padding: 30px 0;
+    }
+
+    .conteudo-avaliacao {
+        padding: 32px 20px;
+        border-radius: 13px;
+    }
+}
